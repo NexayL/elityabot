@@ -7,7 +7,7 @@ module.exports.run = async(client, message, args) => {
             color: 0xe43333,
             title: `__**Voici les commandes d'aides**__`,
             thumbnail: {
-                url: `https://cdn.discordapp.com/attachments/577894860661719040/584012517211111435/testtt.png`
+                url: `https://cdn.discordapp.com/attachments/507683385762643974/588437842129190942/Logo_assaisn.png`
             },
             fields: [
                 {
