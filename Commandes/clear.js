@@ -7,7 +7,7 @@ module.exports.run = (client, message, args) => {
                                                                               
         message.channel.bulkDelete(args[0])
             .then((messages) => {
-                message.channel.send(`__**${messages.size}**__ **messages ont été supprimés !**`);
+                message.channel.send(`__**${messages.size}**__ **messages ont été supprimés !**`).then(m => m.delete(10000));
             });
 };
 
