@@ -31,6 +31,10 @@ module.exports.run = async(client, message, args) => {
                     value: "**Permet d'éjecter une personne du serveur** __**(Modération)**__"
                 },
                 {
+                    name: ':warning: ?mute <@exemple#123> <durée> <raison>',
+                    value: "**Permet de rendre muet une personne pendant une durée définie** __**(Modération)**__"
+                },
+                {
                     name: ':warning: ?ban <@exemple#123>',
                     value: "**Permet de bannir une personne du serveur** __**(Modération)**__"
                 }
