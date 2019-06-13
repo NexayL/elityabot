@@ -6,7 +6,7 @@ module.exports.run = (client, message, args) => {
         if (!mutedUser) {
             return message.channel.send("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**")
         }
-        let muteReason = args.join(' ').clice(30)
+        let muteReason = args.join(' ').slice(30)
         if (!message.member.hasPermission("MANAGE_MESSAGES")) {
             return message.channel.send("**:x:** __**Erreur...**__**, Vous n'avez pas la permission !**")
         }
