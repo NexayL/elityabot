@@ -36,6 +36,7 @@ module.exports.run = (client, message, args) => {
             return message.channel.send("**:x:** __**Erreur...**__**, Salon de Sanctions introuvable !**")
         };
     };
+});
 
 module.exports.help = {
     name: 'unmute'
