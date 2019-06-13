@@ -62,7 +62,7 @@ fs.readdir('./Events/', (error, f) => {
         let muteTime = args[1];
         if (!muteTime) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez spécifier la durée !**")
 
-        await mutedUser.addRole(muteRole.id);
+        mutedUser.addRole(muteRole.id);
 
         setTimeout(() => {
             mutedUser.removeRole(muteRole.id);
