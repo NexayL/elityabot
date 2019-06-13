@@ -44,11 +44,11 @@ fs.readdir('./Events/', (error, f) => {
 
 		if (!muteRole) {
 			try{
-				muteRole = await message.guild.createRole({
-					name: 'MUET',
-					color: "#fff",
-					permissions: []
-				});
+			    muteRole = message.guild.createRole({
+				name: 'MUET',
+				color: "#fff",
+				permissions: []
+			    });
 
 			message.guild.channels.forEach( async (channel, ID) => {
 				await channel.overwritePermissions(muteRole, {
