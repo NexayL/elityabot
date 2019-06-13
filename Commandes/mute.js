@@ -13,7 +13,7 @@ module.exports.run = (client, message, args) => {
         if (mutedUser.hasPermission("BAN_MEMBERS")) {
             return message.channel.send("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cette utilisateur !**")
         }
-        let muteRole = message.guild.roles.Find(`name`, "MUET");
+        let muteRole = message.guild.roles.find(`name`, "MUET");
 
 
         if (!muteRole) {
@@ -52,7 +52,7 @@ module.exports.run = (client, message, args) => {
             .addField("Raison : ", muteReason)
             .setTimestamp();
 
-            let muteChannel = message.guild.channels.Find('name', "❌sanctions❌")
+            let muteChannel = message.guild.channels.find('name', "❌sanctions❌")
             if (!muteChannel) {
                 return message.channel.send("**:x:** __**Erreur...**__**, Salon de Sanctions introuvable !**")
             };
