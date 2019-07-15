@@ -1,15 +1,13 @@
 const Discord = require("discord.js");
 const ms = require("ms");
+
 module.exports.run = async (bot, message, args) => {
 
+  //!tempmute @user 1s/m/h/d
 
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("**:x:** __**Erreur...**__**, Vous n'avez pas la permission !**");
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!tomute) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**");
-  //if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cet utilisateur !**");
-  let reason = args.slice(2).join(" ");
-  if(!reason) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez spécifier une raison !**");
-
+  if(!tomute) return message.reply("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**");
+  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cet utilisateur !**");
   let muterole = message.guild.roles.find(`name`, "MUET");
   //start of create role
   if(!muterole){
@@ -31,32 +29,26 @@ module.exports.run = async (bot, message, args) => {
   }
   //end of create role
   let mutetime = args[1];
-  if(!mutetime) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez spécifier la durée !**");
-
-  message.delete().catch(O_o=>{});
-
-  try{
-    await tomute.send(`**:x: Vous avez été mute pendant** __**${mutetime}**__ **!**`)
-  }catch(e){
-    message.channel.send(`**:x: Un joueur a été muté mais il a désactivé ces messages privés, il est donc muté pendant** __**${mutetime}**__`)
-  }
-
+  if(!mutetime) return message.reply("**:x:** __**Erreur...**__**, Vous devez spécifier la durée ! (?mute @user 1s/m/h/d)**");
+  
   let muteembed = new Discord.RichEmbed()
   .setDescription(`Muté par ${message.author}`)
   .setColor("#cd460b")
   .addField("Joueur muet", tomute)
   .addField("a été muté dans", message.channel)
   .addField("Muet pendant", mutetime)
-  .addField("Raison", reason);
 
   let channel = message.guild.channels.find(c => c.name === "❌sanctions❌");
   if(!channel) return message.channel.send("**:x:** __**Erreur...**__**, Salon de Sanctions introuvable !**");
   channel.send(muteembed);
-
+  
+  //message.reply(`<@${tomute.id}> a été muté pendant ${ms(ms(mutetime))}`);
+  
   await(tomute.addRole(muterole.id));
-
+  
   setTimeout(function(){
     tomute.removeRole(muterole.id);
+    message.channel.send(`<@${tomute.id}> a été unmute !`);
   }, ms(mutetime));
 
 
