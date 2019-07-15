@@ -23,6 +23,14 @@ module.exports.run = async(client, message, args) => {
                     value: "**Permet de voir les statistiques d'un utilisateur**"
                 },
                 {
+                    name: ':white_check_mark: ?serverinfo <@exemple#123>',
+                    value: "**Permet d'avoir quelques informations sur Elitya**"
+                },
+                {
+                    name: ':white_check_mark: ?botinfo <@exemple#123>',
+                    value: "**Permet d'avoir quelques informations sur ElityaBot**"
+                },
+                {
                     name: ':warning: ?clear <nmb de msg>',
                     value: "**Permet de supprimer un nombre de messages définis** __**(Modération)**__"
                 },
@@ -31,7 +39,7 @@ module.exports.run = async(client, message, args) => {
                     value: "**Permet d'éjecter une personne du serveur** __**(Modération)**__"
                 },
                 {
-                    name: ':warning: ?mute <@exemple#123> <durée> <raison>',
+                    name: ':warning: ?mute <@exemple#123> <durée (1s/m/h/d)>',
                     value: "**Permet de rendre muet une personne pendant une durée définie** __**(Modération)**__"
                 },
                 {
