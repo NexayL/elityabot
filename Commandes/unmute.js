@@ -6,7 +6,7 @@ exports.run = (bot, message, args) => {
     let reason = args[1];
     console.log("After met")
     let muted = message.guild.roles.find(`name`, "MUET");
-    if(!User.roles.has(muted.id)) return message.reply("**:x:** __**Erreur...**__**, ${member.user.username} N'est pas muet !**");
+    if(!User.roles.has(muted.id)) return message.reply("**:x:** __**Erreur...**__**, `${member.user.username}` N'est pas muet !**");
     await(User.removeRole(muted.id));
 
     let embed = new discord.RichEmbed()
