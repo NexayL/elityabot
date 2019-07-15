@@ -46,7 +46,6 @@ module.exports.run = async (bot, message, args) => {
   .setColor("#cd460b")
   .addField("Joueur muet", tomute)
   .addField("a été muté dans", message.channel)
-  .addField("a été mute le", message.createdAt)
   .addField("Muet pendant", mutetime)
   .addField("Raison", reason);
 
