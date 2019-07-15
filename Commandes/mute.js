@@ -6,8 +6,8 @@ module.exports.run = async (bot, message, args) => {
   //!tempmute @user 1s/m/h/d
 
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!tomute) return message.reply("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**");
-  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cet utilisateur !**");
+  if(!tomute) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**");
+  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.channel.send("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cet utilisateur !**");
   let muterole = message.guild.roles.find(`name`, "MUET");
   //start of create role
   if(!muterole){
@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
   }
   //end of create role
   let mutetime = args[1];
-  if(!mutetime) return message.reply("**:x:** __**Erreur...**__**, Vous devez spécifier la durée ! (?mute @user 1s/m/h/d)**");
+  if(!mutetime) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez spécifier la durée ! (?mute @user 1s/m/h/d)**");
   
   let muteembed = new Discord.RichEmbed()
   .setDescription(`Muté par ${message.author}`)
@@ -48,7 +48,16 @@ module.exports.run = async (bot, message, args) => {
   
   setTimeout(function(){
     tomute.removeRole(muterole.id);
-    message.channel.send(`<@${tomute.id}> a été unmute !`);
+    let unmuteembed = new Discord.RichEmbed()
+    .setDescription(`Unmute`)
+    .setColor("#cd460b")
+    .addField("Joueur unmute", tomute)
+    .addField("avait été mute pendant", mutetime)
+    .addField("Raison du unmute", "Temps de mute expiré")
+
+    let channel = message.guild.channels.find(c => c.name === "❌sanctions❌");
+    if(!channel) return message.channel.send("**:x:** __**Erreur...**__**, Salon de Sanctions introuvable !**");
+    channel.send(unmuteembed);
   }, ms(mutetime));
 
 
