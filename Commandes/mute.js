@@ -3,12 +3,12 @@ const ms = require("ms");
 module.exports.run = async (bot, message, args) => {
 
 
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous n'avez pas la permission !**");
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("**:x:** __**Erreur...**__**, Vous n'avez pas la permission !**");
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!tomute) return message.reply("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**");
+  if(!tomute) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**");
   //if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cet utilisateur !**");
   let reason = args.slice(2).join(" ");
-  if(!reason) return message.reply("**:x:** __**Erreur...**__**, Vous devez spécifier une raison !**");
+  if(!reason) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez spécifier une raison !**");
 
   let muterole = message.guild.roles.find(`name`, "MUET");
   //start of create role
@@ -31,7 +31,7 @@ module.exports.run = async (bot, message, args) => {
   }
   //end of create role
   let mutetime = args[1];
-  if(!mutetime) return message.reply("**:x:** __**Erreur...**__**, Vous devez spécifier la durée !**");
+  if(!mutetime) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez spécifier la durée !**");
 
   message.delete().catch(O_o=>{});
 
@@ -50,7 +50,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Raison", reason);
 
   let channel = message.guild.channels.find(c => c.name === "❌sanctions❌");
-  if(!channel) return message.reply("**:x:** __**Erreur...**__**, Salon de Sanctions introuvable !**");
+  if(!channel) return message.channel.send("**:x:** __**Erreur...**__**, Salon de Sanctions introuvable !**");
   channel.send(muteembed);
 
   await(tomute.addRole(muterole.id));
