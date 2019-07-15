@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
     .setColor("#15f153")
     .setThumbnail(bicon)
     .addField("Nom du bot", bot.user.username)
-    .addField("Crée le", bot.user.createdAt);
+    .addField("Crée le", bot.user.createdAt)
     .addField("Crée par", "Nexay");
 
     message.channel.send(botembed);
