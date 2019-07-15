@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous n'avez pas la permission !**");
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if(!tomute) return message.reply("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**");
-  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cet utilisateur !**");
+  //if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cet utilisateur !**");
   let reason = args.slice(2).join(" ");
   if(!reason) return message.reply("**:x:** __**Erreur...**__**, Vous devez spécifier une raison !**");
 
