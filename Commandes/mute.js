@@ -1,77 +1,69 @@
-const Discord = require('discord.js');
-const ms = require('ms');
-
-module.exports.run = (client, message, args) => {
-        let mutedUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-        if (!mutedUser) {
-            return message.channel.send("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**")
-        }
-        let muteReason = args.join(' ').slice(30)
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-            return message.channel.send("**:x:** __**Erreur...**__**, Vous n'avez pas la permission !**")
-        }
-        if (mutedUser.hasPermission("BAN_MEMBERS")) {
-            return message.channel.send("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cette utilisateur !**")
-        }
-        let muteRole = message.guild.roles.find(`name`, "MUET");
+const Discord = require("discord.js");
+const ms = require("ms");
+module.exports.run = async (bot, message, args) => {
 
 
-        if (!muteRole) {
-            try{
-                muteRole = message.guild.createRole({
-                name: 'MUET',
-                color: "#fff",
-                permissions: []
-                });
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous n'avez pas la permission !**");
+  let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!tomute) return message.reply("**:x:** __**Erreur...**__**, Vous devez mentionner un utilisateur !**");
+  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("**:x:** __**Erreur...**__**, Vous ne pouvez pas rendre muet cet utilisateur !**");
+  let reason = args.slice(2).join(" ");
+  if(!reason) return message.reply("**:x:** __**Erreur...**__**, Vous devez spécifier une raison !**");
 
-            message.guild.channels.forEach( async (channel, ID) => {
-                channel.overwritePermissions(muteRole, {
-                    SEND_MESSAGE: false,
-                    ADD_REACTIONS: false,
-                })
-            })
-        } catch(e){console.log(e.stack)};
-        }
-        
-        let muteTime = args[1];
-        if (!muteTime) return message.channel.send("**:x:** __**Erreur...**__**, Vous devez spécifier la durée !**")
-
-        mutedUser.addRole(muteRole.id);
-
-        setTimeout(() => {
-            mutedUser.removeRole(muteRole.id);
-            muteChannel.send(unmuteEmbed);
-        }, ms(muteTime));
-
-            let muteEmbed = new Discord.RichEmbed()
-            .setDescription("Mute")
-            .setColor("#cd460b")
-            .addField("Utilisateur Muet : ", `${mutedUser}`)
-            .addField("Mute par : ", `${message.author}`)
-            .addField("Mute pendant : ", `${muteTime}`)
-            .addField("Raison : ", muteReason)
-            .setTimestamp();
-
-            let muteChannel = message.guild.channels.find('name', "❌sanctions❌")
-            if (!muteChannel) {
-                return message.channel.send("**:x:** __**Erreur...**__**, Salon de Sanctions introuvable !**")
-            };
-
-            message.guild.member(mutedUser)
-            muteChannel.send(muteEmbed)
-
-            let unmuteEmbed = new Discord.RichEmbed()
-            .setDescription("Unmute")
-            .setColor("#cd460b")
-            .addField("Utilisateur Unmute : ", `${mutedUser}`)
-            .addField("Raison du unmute : ", "Temps de mute dépassé")
-            .addField("Etait mute par : ", `${message.author}`)
-            .addField("Etait mute pendant : ", `${muteTime}`)
-            .addField("Avait été mute pour : ", muteReason)
-            .setTimestamp();
-            message.guild.member(mutedUser)
+  let muterole = message.guild.roles.find(`name`, "MUET");
+  //start of create role
+  if(!muterole){
+    try{
+      muterole = await message.guild.createRole({
+        name: "MUET",
+        color: "#000000",
+        permissions:[]
+      })
+      message.guild.channels.forEach(async (channel, id) => {
+        await channel.overwritePermissions(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        });
+      });
+    }catch(e){
+      console.log(e.stack);
     }
+  }
+  //end of create role
+  let mutetime = args[1];
+  if(!mutetime) return message.reply("**:x:** __**Erreur...**__**, Vous devez spécifier la durée !**");
+
+  message.delete().catch(O_o=>{});
+
+  try{
+    await tomute.send(`**:x: Vous avez été mute pendant** __**${mutetime}**__ **!**`)
+  }catch(e){
+    message.channel.send(`**:x: Un joueur a été muté mais il a désactivé ces messages privés, il est donc muté pendant** __**${mutetime}**__`)
+  }
+
+  let muteembed = new Discord.RichEmbed()
+  .setDescription(`Muté par ${message.author}`)
+  .setColor("#cd460b")
+  .addField("Joueur muet", tomute)
+  .addField("a été muté dans", message.channel)
+  .addField("a été mute le", message.createdAt)
+  .addField("Muet pendant", mutetime)
+  .addField("Raison", reason);
+
+  let channel = message.guild.channels.find(c => c.name === "❌sanctions❌");
+  if(!channel) return message.reply("**:x:** __**Erreur...**__**, Salon de Sanctions introuvable !**");
+  channel.send(muteembed);
+
+  await(tomute.addRole(muterole.id));
+
+  setTimeout(function(){
+    tomute.removeRole(muterole.id);
+  }, ms(mutetime));
+
+
+//end of module
+}
 
 module.exports.help = {
-    name: 'mute'
-};
+  name: "mute"
+}
