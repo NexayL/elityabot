@@ -2,8 +2,7 @@ const Discord = require('discord.js');
 const ms = require('ms');
 
 module.exports.run = (client, message, args) => {
-     if (command === `${prefix}umute`) {
-        if (message.member.hasPermission("MANAGE_MESSAGES")) {
+          if (message.member.hasPermission("MANAGE_MESSAGES")) {
 
             let unmuteRole = message.guild.roles.Find(`name`, "MUET");
             let unmuteChannel = message.guild.channels.Find('name', "❌sanctions❌")
@@ -36,7 +35,6 @@ module.exports.run = (client, message, args) => {
             return message.channel.send("**:x:** __**Erreur...**__**, Salon de Sanctions introuvable !**")
         };
     };
-}
 module.exports.help = {
     name: 'unmute'
 };
