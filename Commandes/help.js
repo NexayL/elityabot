@@ -58,6 +58,10 @@ module.exports.run = async(client, message, args) => {
                     name: ':warning: ?unwarn <@exemple#123>',
                     value: "**Permet d'enlever un avertissement à une personne du serveur** __**(Modération)**__"
                 },
+                {
+                    name: ':warning: ?infractions <@exemple#123>',
+                    value: "**Permet de voir les avertissements d'une personne du serveur** __**(Modération)**__"
+                }
             ],
             footer: {
                 text: `ElityaBOT développé par Nexay`
