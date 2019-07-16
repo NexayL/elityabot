@@ -42,10 +42,22 @@ module.exports.run = async(client, message, args) => {
                     name: ':warning: ?mute <@exemple#123> <durée (1s/m/h/d)>',
                     value: "**Permet de rendre muet une personne pendant une durée définie** __**(Modération)**__"
                 },
+               {
+                    name: ':warning: ?unmute <@exemple#123> <durée (1s/m/h/d)>',
+                    value: "**Permet de rendre la parole une personne pendant une durée définie** __**(Modération)**__"
+                },
                 {
                     name: ':warning: ?ban <@exemple#123>',
                     value: "**Permet de bannir une personne du serveur** __**(Modération)**__"
-                }
+                },
+                {
+                    name: ':warning: ?warn <@exemple#123>',
+                    value: "**Permet de mettre un avertissement à une personne du serveur** __**(Modération)**__"
+                },
+                {
+                    name: ':warning: ?unwarn <@exemple#123>',
+                    value: "**Permet d'enlever un avertissement à une personne du serveur** __**(Modération)**__"
+                },
             ],
             footer: {
                 text: `ElityaBOT développé par Nexay`
