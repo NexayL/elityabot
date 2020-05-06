@@ -25,7 +25,7 @@ fs.readdir('./Events/', (error, f) => {
             let events = require(`./Events/${f}`);
             let event = f.split('.')[0];
             client.on(event, events.bind(null, client));
-            console.log(DEBUGGGGGGGGGGGGGGGGG)
+            console.log("DEBUGGGGGGGGGGGGGGGGG")
         });
 });
  
