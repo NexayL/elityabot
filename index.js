@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const fs = require('fs');
-const prefix = '?';
+const prefix = '/';
 const ms = require('ms')
 
 fs.readdir('./Commandes/', (error, f) => {
