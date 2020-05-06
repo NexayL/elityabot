@@ -12,55 +12,55 @@ module.exports.run = async(client, message, args) => {
             },
             fields: [
                 {
-                    name: ':white_check_mark: ?help',
+                    name: ':white_check_mark: /help',
                     value: "**Voir les commandes d'aides**"
                 },
                 {
-                    name: ':white_check_mark: ?ping',
+                    name: ':white_check_mark: /ping',
                     value: "**Permet de voir son ping (latence en millisecondes)**"
                 },
                 {
-                    name: ':white_check_mark: ?stats <@exemple#123>',
+                    name: ':white_check_mark: /stats <@exemple#123>',
                     value: "**Permet de voir les statistiques d'un utilisateur**"
                 },
                 {
-                    name: ':white_check_mark: ?serverinfo <@exemple#123>',
+                    name: ':white_check_mark: /serverinfo <@exemple#123>',
                     value: "**Permet d'avoir quelques informations sur Elitya**"
                 },
                 {
-                    name: ':white_check_mark: ?botinfo <@exemple#123>',
+                    name: ':white_check_mark: /botinfo <@exemple#123>',
                     value: "**Permet d'avoir quelques informations sur ElityaBot**"
                 },
                 {
-                    name: ':warning: ?clear <nmb de msg>',
+                    name: ':warning: /clear <nmb de msg>',
                     value: "**Permet de supprimer un nombre de messages définis** __**(Modération)**__"
                 },
                 {
-                    name: ':warning: ?kick <@exemple#123>',
+                    name: ':warning: /kick <@exemple#123>',
                     value: "**Permet d'éjecter une personne du serveur** __**(Modération)**__"
                 },
                 {
-                    name: ':warning: ?mute <@exemple#123> <durée (1s/m/h/d)>',
+                    name: ':warning: /mute <@exemple#123> <durée (1s/m/h/d)>',
                     value: "**Permet de rendre muet une personne pendant une durée définie** __**(Modération)**__"
                 },
                {
-                    name: ':warning: ?unmute <@exemple#123> <durée (1s/m/h/d)>',
+                    name: ':warning: /unmute <@exemple#123> <durée (1s/m/h/d)>',
                     value: "**Permet de rendre la parole une personne pendant une durée définie** __**(Modération)**__"
                 },
                 {
-                    name: ':warning: ?ban <@exemple#123>',
+                    name: ':warning: /ban <@exemple#123>',
                     value: "**Permet de bannir une personne du serveur** __**(Modération)**__"
                 },
                 {
-                    name: ':warning: ?warn <@exemple#123>',
+                    name: ':warning: /warn <@exemple#123>',
                     value: "**Permet de mettre un avertissement à une personne du serveur** __**(Modération)**__"
                 },
                 {
-                    name: ':warning: ?unwarn <@exemple#123>',
+                    name: ':warning: /unwarn <@exemple#123>',
                     value: "**Permet d'enlever un avertissement à une personne du serveur** __**(Modération)**__"
                 },
                 {
-                    name: ':warning: ?infractions <@exemple#123>',
+                    name: ':warning: /infractions <@exemple#123>',
                     value: "**Permet de voir les avertissements d'une personne du serveur** __**(Modération)**__"
                 }
             ],
